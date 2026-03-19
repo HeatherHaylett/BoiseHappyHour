@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run lint -- --fix $CLAUDE_TOOL_INPUT_PATH && npm run typecheck"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run typecheck"
+          }
+        ]
+      }
+    ]
+  }
+}
