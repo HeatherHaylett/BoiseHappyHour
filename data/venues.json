@@ -1,0 +1,48 @@
+[
+  {
+    "id": "bier-depot",
+    "name": "Bier Depot",
+    "address": "500 W Idaho St, Boise, ID 83702",
+    "happyHourDays": ["mon", "tue", "wed", "thu", "fri"],
+    "happyHourStart": "15:00",
+    "happyHourEnd": "18:00",
+    "dealTypes": ["dollar_off"],
+    "dealDescription": "$2 off all drafts, half-price appetizers",
+    "hasFoodSpecials": true,
+    "hasDrinkSpecials": true,
+    "dogFriendly": true,
+    "phone": "208-555-0101",
+    "website": "https://example.com",
+    "lastVerified": "2026-03-01"
+  },
+  {
+    "id": "lucky-13",
+    "name": "Lucky 13",
+    "address": "1300 W Bannock St, Boise, ID 83702",
+    "happyHourDays": ["mon", "tue", "wed", "thu", "fri", "sat"],
+    "happyHourStart": "16:00",
+    "happyHourEnd": "19:00",
+    "dealTypes": ["flat_price"],
+    "dealDescription": "$5 house cocktails, $3 domestic beers",
+    "hasFoodSpecials": false,
+    "hasDrinkSpecials": true,
+    "dogFriendly": false,
+    "phone": "208-555-0202",
+    "lastVerified": "2026-03-01"
+  },
+  {
+    "id": "payette-brewing",
+    "name": "Payette Brewing",
+    "address": "733 S Pioneer St, Boise, ID 83702",
+    "happyHourDays": ["mon", "tue", "wed", "thu", "fri"],
+    "happyHourStart": "15:00",
+    "happyHourEnd": "17:00",
+    "dealTypes": ["percent_off"],
+    "dealDescription": "25% off all pints and growler fills",
+    "hasFoodSpecials": false,
+    "hasDrinkSpecials": true,
+    "dogFriendly": true,
+    "website": "https://example.com",
+    "lastVerified": "2026-03-01"
+  }
+]
