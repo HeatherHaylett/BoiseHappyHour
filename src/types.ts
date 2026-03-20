@@ -24,7 +24,7 @@ export type Venue = {
 export type FilterState = {
   searchQuery: string;
   openNow: boolean;
-  dogFriendly: boolean;
+  tags: VenueTag[]; 
   hasFoodSpecials: boolean;
   hasDrinkSpecials: boolean;
   dealTypes: DealType[];
@@ -33,7 +33,7 @@ export type FilterState = {
 export const defaultFilters: FilterState = {
   searchQuery: '',
   openNow: false,
-  dogFriendly: false,
+  tags: [],
   hasFoodSpecials: false,
   hasDrinkSpecials: false,
   dealTypes: [],

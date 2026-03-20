@@ -64,7 +64,6 @@ export default function VenueDetailScreen() {
       <View style={styles.section}>
         <Text>Food specials: {venue.hasFoodSpecials ? 'yes' : 'no'}</Text>
         <Text>Drink specials: {venue.hasDrinkSpecials ? 'yes' : 'no'}</Text>
-        <Text>Dog friendly: {venue.dogFriendly ? 'yes' : 'no'}</Text>
       </View>
       <View style={styles.section}>
         <Text>Last verified: {venue.lastVerified}</Text>

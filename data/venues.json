@@ -8,9 +8,9 @@
     "happyHourEnd": "18:00",
     "dealTypes": ["dollar_off"],
     "dealDescription": "$2 off all drafts, half-price appetizers",
+    "tags": ["dog_friendly"],
     "hasFoodSpecials": true,
     "hasDrinkSpecials": true,
-    "dogFriendly": true,
     "phone": "208-555-0101",
     "website": "https://example.com",
     "lastVerified": "2026-03-01"
@@ -24,9 +24,9 @@
     "happyHourEnd": "19:00",
     "dealTypes": ["flat_price"],
     "dealDescription": "$5 house cocktails, $3 domestic beers",
+    "tags": ["patio"],
     "hasFoodSpecials": false,
     "hasDrinkSpecials": true,
-    "dogFriendly": false,
     "phone": "208-555-0202",
     "lastVerified": "2026-03-01"
   },
@@ -41,7 +41,6 @@
     "dealDescription": "25% off all pints and growler fills",
     "hasFoodSpecials": false,
     "hasDrinkSpecials": true,
-    "dogFriendly": true,
     "website": "https://example.com",
     "lastVerified": "2026-03-01"
   }

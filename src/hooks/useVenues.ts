@@ -14,7 +14,9 @@ export function useVenues(filters: FilterState): Venue[] {
       }
     }
     if (filters.openNow && !isVenueOpenNow(venue)) return false;
-    if (filters.dogFriendly && !venue.dogFriendly) return false;
+    if (filters.tags.length > 0) {
+      if (!filters.tags.some((t) => venue.tags.includes(t))) return false;
+    }
     if (filters.hasFoodSpecials && !venue.hasFoodSpecials) return false;
     if (filters.hasDrinkSpecials && !venue.hasDrinkSpecials) return false;
     if (filters.dealTypes.length > 0) {

@@ -34,7 +34,7 @@ export default function VenueListScreen() {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const venues = useVenues(filters);
 
-  function toggle(key: keyof Pick<FilterState, 'openNow' | 'dogFriendly' | 'hasFoodSpecials' | 'hasDrinkSpecials'>) {
+  function toggle(key: keyof Pick<FilterState, 'openNow' | 'hasFoodSpecials' | 'hasDrinkSpecials'>) {
     setFilters((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
@@ -51,10 +51,10 @@ export default function VenueListScreen() {
   const filterCount = useMemo(() => {
     let count = 0;
     if (filters.openNow) count += 1;
-    if (filters.dogFriendly) count += 1;
     if (filters.hasFoodSpecials) count += 1;
     if (filters.hasDrinkSpecials) count += 1;
     count += filters.dealTypes.length;
+    count += filters.tags.length;
     return count;
   }, [filters]);
 
@@ -69,7 +69,6 @@ export default function VenueListScreen() {
         <Text>{item.dealDescription}</Text>
         <View style={styles.badges}>
           {isVenueOpenNow(item) && <Text>[ open now ]</Text>}
-          {item.dogFriendly && <Text>[ dog friendly ]</Text>}
           {item.hasFoodSpecials && <Text>[ food ]</Text>}
           {item.hasDrinkSpecials && <Text>[ drinks ]</Text>}
         </View>
@@ -98,9 +97,6 @@ export default function VenueListScreen() {
         </View>
         <TouchableOpacity onPress={() => toggle('openNow')}>
           <Text>{filters.openNow ? '[x]' : '[ ]'} Open now</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => toggle('dogFriendly')}>
-          <Text>{filters.dogFriendly ? '[x]' : '[ ]'} Dog friendly</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => toggle('hasFoodSpecials')}>
           <Text>{filters.hasFoodSpecials ? '[x]' : '[ ]'} Food specials</Text>

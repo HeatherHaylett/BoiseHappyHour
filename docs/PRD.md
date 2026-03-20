@@ -74,9 +74,9 @@ Each venue record contains the following fields:
 | `happyHourEnd` | String (24h) | `18:00` |
 | `dealTypes` | Array of DealType | `['dollar_off', 'percent_off']` |
 | `dealDescription` | String | `$5 pints, half-price apps` |
+| `tags` | Array of VenueTag | `['dog_friendly', 'patio']` |
 | `hasFoodSpecials` | Boolean | `true` |
 | `hasDrinkSpecials` | Boolean | `true` |
-| `dogFriendly` | Boolean | `false` |
 | `phone` | String (optional) | `(208) 555-0123` |
 | `website` | URL (optional) | `https://...` |
 | `lastVerified` | ISO date string | `2026-03-01` |

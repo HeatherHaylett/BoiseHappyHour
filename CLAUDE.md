@@ -98,6 +98,8 @@ export type DealType = 'BOGO' | 'percent_off' | 'dollar_off' | 'flat_price' | 'o
 
 export type Day = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
+export type VenueTag = 'dog_friendly' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
+
 export type Venue = {
   id: string;               // Unique slug, e.g. "bier-depot"
   name: string;
@@ -106,10 +108,10 @@ export type Venue = {
   happyHourStart: string;   // 24h time string, e.g. "15:00"
   happyHourEnd: string;     // 24h time string, e.g. "18:00"
   dealTypes: DealType[];    // One or more
+  tags: VenueTag[];         // One or more
   dealDescription: string;  // Human-readable, e.g. "$5 pints, half-price apps"
   hasFoodSpecials: boolean;
   hasDrinkSpecials: boolean;
-  dogFriendly: boolean;
   phone?: string;           // Optional
   website?: string;         // Optional
   lastVerified: string;     // ISO date string, e.g. "2026-03-01"
@@ -146,18 +148,18 @@ Filter state lives in `VenueListScreen` and is passed down as props. Shape:
 export type FilterState = {
   searchQuery: string;
   openNow: boolean;
-  dogFriendly: boolean;
   hasFoodSpecials: boolean;
   hasDrinkSpecials: boolean;
+  tags: VenueTag[];
   dealTypes: DealType[];    // Empty array = no filter (show all)
 };
 
 const defaultFilters: FilterState = {
   searchQuery: '',
   openNow: false,
-  dogFriendly: false,
   hasFoodSpecials: false,
   hasDrinkSpecials: false,
+  tags: [],
   dealTypes: [],
 };
 ```
