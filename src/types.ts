@@ -2,6 +2,8 @@ export type DealType = 'BOGO' | 'percent_off' | 'dollar_off' | 'flat_price' | 'o
 
 export type Day = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
+export type VenueTag = 'dog_friendly' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
+
 export type Venue = {
   id: string;
   name: string;
@@ -13,7 +15,7 @@ export type Venue = {
   dealDescription: string;
   hasFoodSpecials: boolean;
   hasDrinkSpecials: boolean;
-  dogFriendly: boolean;
+  tags: VenueTag[];
   phone?: string;
   website?: string;
   lastVerified: string;
