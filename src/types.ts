@@ -2,7 +2,7 @@ export type DealType = 'BOGO' | 'percent_off' | 'dollar_off' | 'flat_price' | 'o
 
 export type Day = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
-export type VenueTag = 'dog_friendly' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
+export type VenueTag = 'dog_outside' | 'dog_inside' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
 
 export type HappyHourWindow = {
   days: Day[];
