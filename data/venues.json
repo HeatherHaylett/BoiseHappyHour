@@ -10,7 +10,6 @@
     "dealDescription": "$2 off all drafts, half-price appetizers",
     "tags": ["dog_friendly"],
     "hasFoodSpecials": true,
-    "hasDrinkSpecials": true,
     "phone": "208-555-0101",
     "website": "https://example.com",
     "lastVerified": "2026-03-01"
@@ -26,7 +25,6 @@
     "dealDescription": "$5 house cocktails, $3 domestic beers",
     "tags": ["patio"],
     "hasFoodSpecials": false,
-    "hasDrinkSpecials": true,
     "phone": "208-555-0202",
     "lastVerified": "2026-03-01"
   },
@@ -40,7 +38,6 @@
     "dealTypes": ["percent_off"],
     "dealDescription": "25% off all pints and growler fills",
     "hasFoodSpecials": false,
-    "hasDrinkSpecials": true,
     "website": "https://example.com",
     "lastVerified": "2026-03-01"
   }

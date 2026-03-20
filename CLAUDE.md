@@ -111,7 +111,6 @@ export type Venue = {
   tags: VenueTag[];         // One or more
   dealDescription: string;  // Human-readable, e.g. "$5 pints, half-price apps"
   hasFoodSpecials: boolean;
-  hasDrinkSpecials: boolean;
   phone?: string;           // Optional
   website?: string;         // Optional
   lastVerified: string;     // ISO date string, e.g. "2026-03-01"
@@ -149,7 +148,6 @@ export type FilterState = {
   searchQuery: string;
   openNow: boolean;
   hasFoodSpecials: boolean;
-  hasDrinkSpecials: boolean;
   tags: VenueTag[];
   dealTypes: DealType[];    // Empty array = no filter (show all)
 };
@@ -158,7 +156,6 @@ const defaultFilters: FilterState = {
   searchQuery: '',
   openNow: false,
   hasFoodSpecials: false,
-  hasDrinkSpecials: false,
   tags: [],
   dealTypes: [],
 };

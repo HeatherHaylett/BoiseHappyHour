@@ -14,7 +14,6 @@ export type Venue = {
   dealTypes: DealType[];
   dealDescription: string;
   hasFoodSpecials: boolean;
-  hasDrinkSpecials: boolean;
   tags: VenueTag[];
   phone?: string;
   website?: string;
@@ -26,7 +25,6 @@ export type FilterState = {
   openNow: boolean;
   tags: VenueTag[]; 
   hasFoodSpecials: boolean;
-  hasDrinkSpecials: boolean;
   dealTypes: DealType[];
 };
 
@@ -35,7 +33,6 @@ export const defaultFilters: FilterState = {
   openNow: false,
   tags: [],
   hasFoodSpecials: false,
-  hasDrinkSpecials: false,
   dealTypes: [],
 };
 

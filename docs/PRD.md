@@ -76,7 +76,6 @@ Each venue record contains the following fields:
 | `dealDescription` | String | `$5 pints, half-price apps` |
 | `tags` | Array of VenueTag | `['dog_friendly', 'patio']` |
 | `hasFoodSpecials` | Boolean | `true` |
-| `hasDrinkSpecials` | Boolean | `true` |
 | `phone` | String (optional) | `(208) 555-0123` |
 | `website` | URL (optional) | `https://...` |
 | `lastVerified` | ISO date string | `2026-03-01` |

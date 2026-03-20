@@ -34,7 +34,7 @@ export default function VenueListScreen() {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const venues = useVenues(filters);
 
-  function toggle(key: keyof Pick<FilterState, 'openNow' | 'hasFoodSpecials' | 'hasDrinkSpecials'>) {
+  function toggle(key: keyof Pick<FilterState, 'openNow' | 'hasFoodSpecials'>) {
     setFilters((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
@@ -52,7 +52,6 @@ export default function VenueListScreen() {
     let count = 0;
     if (filters.openNow) count += 1;
     if (filters.hasFoodSpecials) count += 1;
-    if (filters.hasDrinkSpecials) count += 1;
     count += filters.dealTypes.length;
     count += filters.tags.length;
     return count;
@@ -70,7 +69,6 @@ export default function VenueListScreen() {
         <View style={styles.badges}>
           {isVenueOpenNow(item) && <Text>[ open now ]</Text>}
           {item.hasFoodSpecials && <Text>[ food ]</Text>}
-          {item.hasDrinkSpecials && <Text>[ drinks ]</Text>}
         </View>
       </TouchableOpacity>
     );
@@ -100,9 +98,6 @@ export default function VenueListScreen() {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => toggle('hasFoodSpecials')}>
           <Text>{filters.hasFoodSpecials ? '[x]' : '[ ]'} Food specials</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => toggle('hasDrinkSpecials')}>
-          <Text>{filters.hasDrinkSpecials ? '[x]' : '[ ]'} Drink specials</Text>
         </TouchableOpacity>
         <View style={styles.dealTypes}>
           {(Object.keys(DEAL_TYPE_LABELS) as DealType[]).map((dt) => (
