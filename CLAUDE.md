@@ -224,6 +224,68 @@ When in doubt, do less. The goal is structure and wiring, not appearance. A desi
 
 ---
 
+## Figma conventions
+
+### File structure
+
+Organize the Figma file into two pages:
+
+```
+Page: Design System
+  ├── Frame: Colors
+  ├── Frame: Typography
+  ├── Frame: Button
+  ├── Frame: Tag
+  └── Frame: VenueCard
+
+Page: Screens
+  └── Frame: VenueList
+```
+
+Share one frame URL per design review or ticket. Selecting the frame in Figma before copying the URL ensures the `node-id` parameter points to the right node.
+
+### Layer naming
+
+Layer names are used by Claude to generate accurate tickets and component code. Follow these rules:
+
+**Data-bound text** — name the layer after the `Venue` field it displays:
+```
+venue.name
+venue.address
+venue.dealDescription
+venue.happyHourStart
+venue.happyHourEnd
+```
+
+**Tappable elements** — append `(tappable)` to the layer name:
+```
+venue.address (tappable)
+venue.phone (tappable)
+venue.website (tappable)
+```
+
+**Boolean badges / tags** — name after the `Venue` boolean field, not a generic label:
+```
+dogFriendly    (not "Tag 1")
+hasFoodSpecials
+hasDrinkSpecials
+openNow
+```
+
+**Component props** — for reusable atoms that are not data-bound, use the prop name directly (not dot notation):
+```
+label          (Button text — not "button.title")
+```
+
+**Variant states** — use Figma variant property names. These map directly to code props:
+```
+Variant: default | pressed | disabled
+```
+
+The dot notation (`venue.X`) signals "this value comes from a Venue object." Plain names (`label`) signal "this is a configurable prop." Never use `props.X` — it adds noise without meaning.
+
+---
+
 ## CI / build pipeline
 
 - **EAS Build** (Expo Application Services) handles iOS and Android builds
