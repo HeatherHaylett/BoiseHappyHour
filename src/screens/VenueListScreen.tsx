@@ -17,7 +17,7 @@ import {
   DealType,
 } from '@/types';
 import { useVenues } from '@/hooks/useVenues';
-import { isVenueOpenNow } from '@/utils/timeHelpers';
+import { VenueCard } from '@/components/VenueCard';
 
 const DEAL_TYPE_LABELS: Record<DealType, string> = {
   BOGO: 'BOGO',
@@ -59,18 +59,10 @@ export default function VenueListScreen() {
 
   function renderItem({ item }: { item: Venue }) {
     return (
-      <TouchableOpacity
-        style={styles.row}
+      <VenueCard
+        venue={item}
         onPress={() => navigation.navigate('VenueDetail', { venueId: item.id })}
-      >
-        <Text>{item.name}</Text>
-        <Text>{item.happyHourDays.join(', ')}  {item.happyHourStart}–{item.happyHourEnd}</Text>
-        <Text>{item.dealDescription}</Text>
-        <View style={styles.badges}>
-          {isVenueOpenNow(item) && <Text>[ open now ]</Text>}
-          {item.hasFoodSpecials && <Text>[ food ]</Text>}
-        </View>
-      </TouchableOpacity>
+      />
     );
   }
 
@@ -142,15 +134,6 @@ const styles = StyleSheet.create({
   dealTypes: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-  },
-  row: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    padding: 12,
-  },
-  badges: {
-    flexDirection: 'row',
     gap: 8,
   },
   empty: {
