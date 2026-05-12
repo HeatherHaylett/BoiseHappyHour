@@ -21,5 +21,24 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "figma@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "mcp__plugin_figma_figma__get_metadata",
+      "mcp__plugin_figma_figma__get_figjam",
+      "mcp__plugin_figma_figma__get_libraries",
+      "mcp__plugin_figma_figma__get_variable_defs",
+      "mcp__plugin_figma_figma__search_design_system",
+      "mcp__plugin_figma_figma__get_code_connect_suggestions",
+      "mcp__plugin_figma_figma__get_context_for_code_connect",
+      "mcp__plugin_figma_figma__get_code_connect_map",
+      "mcp__plugin_figma_figma__whoami"
+    ]
   }
 }
