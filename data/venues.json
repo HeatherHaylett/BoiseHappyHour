@@ -1,44 +1,340 @@
 [
   {
-    "id": "bier-depot",
-    "name": "Bier Depot",
-    "address": "500 W Idaho St, Boise, ID 83702",
-    "happyHourDays": ["mon", "tue", "wed", "thu", "fri"],
-    "happyHourStart": "15:00",
-    "happyHourEnd": "18:00",
-    "dealTypes": ["dollar_off"],
-    "dealDescription": "$2 off all drafts, half-price appetizers",
-    "tags": ["dog_friendly"],
+    "id": "bittercreek-alehouse",
+    "name": "Bittercreek Alehouse",
+    "address": "246 N 8th St, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "start": "15:00",
+        "end": "18:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "Low Power Happy Hour",
     "hasFoodSpecials": true,
-    "phone": "208-555-0101",
-    "website": "https://example.com",
-    "lastVerified": "2026-03-01"
+    "tags": [
+      "patio"
+    ],
+    "phone": "(208) 345-1813",
+    "website": "https://bittercreekalehouse.com/menu/happy-hour/",
+    "lastVerified": "1969-12-31"
   },
   {
-    "id": "lucky-13",
-    "name": "Lucky 13",
-    "address": "1300 W Bannock St, Boise, ID 83702",
-    "happyHourDays": ["mon", "tue", "wed", "thu", "fri", "sat"],
-    "happyHourStart": "16:00",
-    "happyHourEnd": "19:00",
-    "dealTypes": ["flat_price"],
-    "dealDescription": "$5 house cocktails, $3 domestic beers",
-    "tags": ["patio"],
+    "id": "taphouse",
+    "name": "Taphouse",
+    "address": "760 W Main St Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "start": "16:00",
+        "end": "18:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "$1 off drafts | $4 house wines | $3 wells",
     "hasFoodSpecials": false,
-    "phone": "208-555-0202",
-    "lastVerified": "2026-03-01"
+    "tags": [
+      "dog_outside",
+      "patio",
+      "sports_tv"
+    ],
+    "phone": "(208) 336-6991",
+    "website": "https://taphouseboise.com/menu/",
+    "lastVerified": "1969-12-31"
   },
   {
-    "id": "payette-brewing",
-    "name": "Payette Brewing",
-    "address": "733 S Pioneer St, Boise, ID 83702",
-    "happyHourDays": ["mon", "tue", "wed", "thu", "fri"],
-    "happyHourStart": "15:00",
-    "happyHourEnd": "17:00",
-    "dealTypes": ["percent_off"],
-    "dealDescription": "25% off all pints and growler fills",
+    "id": "funky-taco",
+    "name": "The Funky Taco",
+    "address": "801 West Bannock Street Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "start": "15:00",
+        "end": "18:00"
+      },
+      {
+        "days": [
+          "tue",
+          "sun"
+        ],
+        "start": "00:00",
+        "end": "23:59"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "Street tacos 3 for $12 | discounted draft beers, wine, and cocktails",
+    "hasFoodSpecials": true,
+    "tags": [
+      "dog_outside",
+      "patio"
+    ],
+    "phone": "(208)-600-3197",
+    "website": "https://eatlivefunky.com/food-menu",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "bar-please",
+    "name": "Bar Please",
+    "address": "620 W. Idaho St. Ste. 300. Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "start": "16:00",
+        "end": "17:00"
+      }
+    ],
+    "dealTypes": [
+      "BOGO"
+    ],
+    "dealDescription": "BOGO on all Spritzes, Beer and Wine!",
     "hasFoodSpecials": false,
-    "website": "https://example.com",
-    "lastVerified": "2026-03-01"
+    "tags": [
+      "dog_outside",
+      "patio"
+    ],
+    "phone": "(208) 426-0538",
+    "website": "https://www.barplease.com/",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "bardenay",
+    "name": "Bardenay Restaurant & Distillery",
+    "address": "610 W Grove St, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "fri"
+        ],
+        "start": "14:00",
+        "end": "17:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "Discounted share plates, drinks, and mocktails",
+    "hasFoodSpecials": true,
+    "tags": [
+      "patio"
+    ],
+    "phone": "(208) 426-0538",
+    "website": "https://bardenay.com/happy-hour/",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "trillium",
+    "name": "Trillium",
+    "address": "245 S Capitol Blvd, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "fri",
+          "thu"
+        ],
+        "start": "15:00",
+        "end": "17:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "$5 beers | $8 wine | $9 cocktails | half-off apps",
+    "hasFoodSpecials": true,
+    "tags": [
+      "patio"
+    ],
+    "phone": "(208) 333-8002",
+    "website": "https://document-tc.galaxy.tf/wdpdf-b267otmkkgf45a925j2febafq/menus_cms-document.pdf",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "acero",
+    "name": "Acero Boards + Bottles",
+    "address": "801 W Main St, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "tue",
+          "wed",
+          "mon",
+          "thu",
+          "fri"
+        ],
+        "start": "11:00",
+        "end": "17:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "$6.00 glasses of wine and $6.00 pitchers of beer",
+    "hasFoodSpecials": false,
+    "tags": [
+      "dog_outside",
+      "patio"
+    ],
+    "phone": "(208) 801-6896",
+    "website": "https://www.aceroidaho.com/",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "cottonwood",
+    "name": "Cottonwood Grille",
+    "address": "913 W River St, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri",
+          "sun"
+        ],
+        "start": "15:00",
+        "end": "17:00"
+      },
+      {
+        "days": [
+          "sat"
+        ],
+        "start": "11:00",
+        "end": "18:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "$4 well drinks | $6 cocktails | $4 house wine | $4 drafts",
+    "hasFoodSpecials": true,
+    "tags": [
+      "patio"
+    ],
+    "phone": "(208) 333-9800",
+    "website": "https://cottonwoodgrille.com/wp-content/uploads/2025/11/Happy-Hour-November-2025.pdf",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "ruths-chris",
+    "name": "Ruth's Chris Steakhouse",
+    "address": "800 West Main Street800 West Main Street, Suite 110, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "start": "16:30",
+        "end": "18:30"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "Only available in the bar | $12 cocktails | $5 drafts | $9 wine",
+    "hasFoodSpecials": true,
+    "tags": [],
+    "phone": "(208) 426-8000",
+    "website": "https://ruthschrishg.com/wp-content/uploads/2025/11/Boise-Happy-Hour-November-2025.pdf",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "chandlers",
+    "name": "Chandlers Prime Steaks Fine Seafood",
+    "address": "981 W Grove St, Boise, ID 83702",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri"
+        ],
+        "start": "16:00",
+        "end": "18:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "Only in bar and lounge | $10 bites | $10 sips | $8 beers",
+    "hasFoodSpecials": true,
+    "tags": [],
+    "phone": "(208) 383-4300",
+    "website": "https://www.chandlersboise.com/social-hour/",
+    "lastVerified": "1969-12-31"
+  },
+  {
+    "id": "corso",
+    "name": "Corso Italian Steak",
+    "address": "1555 S Broadway Ave, Boise, ID 83706",
+    "schedule": [
+      {
+        "days": [
+          "mon",
+          "tue",
+          "wed",
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "start": "16:00",
+        "end": "18:00"
+      }
+    ],
+    "dealTypes": [
+      "flat_price"
+    ],
+    "dealDescription": "$8 cocktails | $8 wine | $5 drafts",
+    "hasFoodSpecials": true,
+    "tags": [],
+    "phone": "(208) 297-7158",
+    "website": "https://www.corsoitaliansteak.com/menu#menu=happy-hour",
+    "lastVerified": "1969-12-31"
   }
 ]
