@@ -69,9 +69,7 @@ Each venue record contains the following fields:
 | `id` | String (slug) | `bier-depot` |
 | `name` | String | `The Bier Depot` |
 | `address` | String | `1521 W State St, Boise, ID` |
-| `happyHourDays` | Array of Day | `['mon','tue','wed','thu','fri']` |
-| `happyHourStart` | String (24h) | `15:00` |
-| `happyHourEnd` | String (24h) | `18:00` |
+| `schedule` | Array of HappyHourWindow | `[{ days: ['mon','fri'], start: '15:00', end: '18:00' }]` |
 | `dealTypes` | Array of DealType | `['dollar_off', 'percent_off']` |
 | `dealDescription` | String | `$5 pints, half-price apps` |
 | `tags` | Array of VenueTag | `['dog_friendly', 'patio']` |
@@ -83,6 +81,8 @@ Each venue record contains the following fields:
 **Allowed values:**
 - `Day`: `mon` `tue` `wed` `thu` `fri` `sat` `sun`
 - `DealType`: `BOGO` `percent_off` `dollar_off` `flat_price` `other`
+- `VenueTag`: `dog_outside` `dog_inside` `patio` `live_music` `sports_tv` `heated_patio`
+- `HappyHourWindow.end` may be less than `start` for windows that span midnight
 
 ---
 

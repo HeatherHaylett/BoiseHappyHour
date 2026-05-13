@@ -98,15 +98,19 @@ export type DealType = 'BOGO' | 'percent_off' | 'dollar_off' | 'flat_price' | 'o
 
 export type Day = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
-export type VenueTag = 'dog_friendly' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
+export type VenueTag = 'dog_outside' | 'dog_inside' | 'patio' | 'live_music' | 'sports_tv' | 'heated_patio';
+
+export type HappyHourWindow = {
+  days: Day[];
+  start: string;  // "HH:mm"
+  end: string;    // "HH:mm" — may be less than start if window spans midnight
+};
 
 export type Venue = {
   id: string;               // Unique slug, e.g. "bier-depot"
   name: string;
   address: string;          // Full street address, Boise ID
-  happyHourDays: Day[];     // e.g. ['mon', 'tue', 'wed', 'thu', 'fri']
-  happyHourStart: string;   // 24h time string, e.g. "15:00"
-  happyHourEnd: string;     // 24h time string, e.g. "18:00"
+  schedule: HappyHourWindow[];
   dealTypes: DealType[];    // One or more
   tags: VenueTag[];         // One or more
   dealDescription: string;  // Human-readable, e.g. "$5 pints, half-price apps"
@@ -171,10 +175,10 @@ This is the most complex piece of business logic. It lives exclusively in `src/u
 
 ### Rules
 
-- Compare current device day and time against `happyHourDays`, `happyHourStart`, `happyHourEnd`
+- A venue has `schedule: HappyHourWindow[]` — loop with `.some()` to check any window
 - Use `day.js` for all time operations
-- `happyHourStart` and `happyHourEnd` are 24h strings (`"HH:mm"`) — parse with `dayjs('2000-01-01 ' + time, 'YYYY-MM-DD HH:mm')`
-- Happy hours do not span midnight in v1 — `happyHourEnd` is always later in the day than `happyHourStart`
+- `start` and `end` are 24h strings (`"HH:mm"`) — parse with `dayjs('2000-01-01 ' + time, 'YYYY-MM-DD HH:mm')`
+- Windows may span midnight — if `end < start`, the window crosses into the next day
 - Day matching: map `dayjs().day()` (0=Sunday) to the `Day` type
 
 ### Implementation
@@ -191,17 +195,24 @@ const dayjsDayToDay: Record<number, Day> = {
 export function isVenueOpenNow(venue: Venue): boolean {
   const now = dayjs();
   const currentDay = dayjsDayToDay[now.day()];
-  if (!venue.happyHourDays.includes(currentDay)) return false;
+  const check = dayjs(`2000-01-01 ${now.format('HH:mm')}`, 'YYYY-MM-DD HH:mm');
 
-  const start = dayjs(`2000-01-01 ${venue.happyHourStart}`, 'YYYY-MM-DD HH:mm');
-  const end   = dayjs(`2000-01-01 ${venue.happyHourEnd}`,   'YYYY-MM-DD HH:mm');
-  const check = dayjs(`2000-01-01 ${now.format('HH:mm')}`,  'YYYY-MM-DD HH:mm');
+  return venue.schedule.some((window) => {
+    if (!window.days.includes(currentDay)) return false;
 
-  return check.isAfter(start) && check.isBefore(end);
+    const start = dayjs(`2000-01-01 ${window.start}`, 'YYYY-MM-DD HH:mm');
+    const end = dayjs(`2000-01-01 ${window.end}`, 'YYYY-MM-DD HH:mm');
+
+    if (end.isAfter(start)) {
+      return check.isAfter(start) && check.isBefore(end);
+    }
+    // midnight-spanning window: e.g. 23:00–01:00
+    return check.isAfter(start) || check.isBefore(end);
+  });
 }
 ```
 
-Write unit tests for this function. Edge cases to cover: first minute of happy hour, last minute, one minute before, one minute after, wrong day.
+Write unit tests for this function. Edge cases to cover: first minute of happy hour, last minute, one minute before, one minute after, wrong day, two windows, midnight-spanning window.
 
 ---
 
@@ -253,8 +264,8 @@ Layer names are used by Claude to generate accurate tickets and component code. 
 venue.name
 venue.address
 venue.dealDescription
-venue.happyHourStart
-venue.happyHourEnd
+venue.schedule[0].start
+venue.schedule[0].end
 ```
 
 **Tappable elements** — append `(tappable)` to the layer name:
@@ -264,12 +275,16 @@ venue.phone (tappable)
 venue.website (tappable)
 ```
 
-**Boolean badges / tags** — name after the `Venue` boolean field, not a generic label:
+**Boolean badges / tags** — name after the field or tag value, not a generic label:
 ```
-dogFriendly    (not "Tag 1")
 hasFoodSpecials
-hasDrinkSpecials
 openNow
+dog_outside    (not "Tag 1")
+dog_inside
+patio
+live_music
+sports_tv
+heated_patio
 ```
 
 **Component props** — for reusable atoms that are not data-bound, use the prop name directly (not dot notation):
