@@ -3,6 +3,7 @@ import {
 } from 'react-native';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList, Venue } from '@/types';
+import { formatScheduleWindow } from '@/utils/timeHelpers';
 import venues from '../../data/venues.json';
 
 type Route = RouteProp<RootStackParamList, 'VenueDetail'>;
@@ -56,8 +57,9 @@ export default function VenueDetailScreen() {
         ) : null}
       </View>
       <View style={styles.section}>
-        <Text>Days: {venue.happyHourDays.join(', ')}</Text>
-        <Text>Hours: {venue.happyHourStart}–{venue.happyHourEnd}</Text>
+        {venue.schedule.map((window, i) => (
+          <Text key={i}>{window.days.join(', ')}  {formatScheduleWindow(window)}</Text>
+        ))}
         <Text>{venue.dealDescription}</Text>
         <Text>Deal types: {venue.dealTypes.join(', ')}</Text>
       </View>

@@ -14,13 +14,13 @@ export function VenueCard({ venue, onPress }: Props) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text>{venue.name}</Text>
-      <Text>{venue.happyHourDays.join(', ')}  {venue.happyHourStart}–{venue.happyHourEnd}</Text>
       <Text>{venue.dealDescription}</Text>
       <View style={styles.tags}>
         {isVenueOpenNow(venue) && <Tag label="open now" />}
-        {venue.dogFriendly && <Tag label="dog friendly" />}
         {venue.hasFoodSpecials && <Tag label="food" />}
-        {venue.hasDrinkSpecials && <Tag label="drinks" />}
+        {venue.tags.map((tag) => (
+          <Tag key={tag} label={tag.replace(/_/g, ' ')} />
+        ))}
       </View>
     </TouchableOpacity>
   );
