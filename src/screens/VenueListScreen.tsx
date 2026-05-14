@@ -17,6 +17,7 @@ import {
   DealType,
 } from '@/types';
 import { useVenues } from '@/hooks/useVenues';
+import { PushButton } from '@/components/PushButton';
 import { VenueCard } from '@/components/VenueCard';
 
 const DEAL_TYPE_LABELS: Record<DealType, string> = {
@@ -71,7 +72,7 @@ export default function VenueListScreen() {
       <View style={styles.searchBar}>
         <TextInput
           style={styles.input}
-          placeholder="Search venues..."
+          placeholder="Search happy hours..."
           value={filters.searchQuery}
           onChangeText={(text) => setFilters((prev) => ({ ...prev, searchQuery: text }))}
         />
@@ -91,6 +92,7 @@ export default function VenueListScreen() {
         <TouchableOpacity onPress={() => toggle('hasFoodSpecials')}>
           <Text>{filters.hasFoodSpecials ? '[x]' : '[ ]'} Food specials</Text>
         </TouchableOpacity>
+        <PushButton label="Open Late" onPress={() => console.log("PRES")}/>
         <View style={styles.dealTypes}>
           {(Object.keys(DEAL_TYPE_LABELS) as DealType[]).map((dt) => (
             <TouchableOpacity key={dt} onPress={() => toggleDealType(dt)}>
@@ -114,12 +116,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchBar: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
   input: {
-    height: 32,
+    fontSize: 14,
+    color: '#000000',
   },
   filters: {
     borderWidth: 1,
