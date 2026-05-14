@@ -2,11 +2,12 @@ import { useState, useMemo } from 'react';
 import {
   View,
   Text,
-  TextInput,
   FlatList,
   TouchableOpacity,
+  ScrollView,
   StyleSheet,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
@@ -19,6 +20,8 @@ import {
 import { useVenues } from '@/hooks/useVenues';
 import { FilterButton } from '@/components/FilterButton';
 import { VenueCard } from '@/components/VenueCard';
+import { SearchBar } from '@/components/SearchBar';
+import { typography } from '@/constants/typography';
 
 const DEAL_TYPE_LABELS: Record<DealType, string> = {
   BOGO: 'BOGO',
@@ -29,6 +32,10 @@ const DEAL_TYPE_LABELS: Record<DealType, string> = {
 };
 
 type Nav = NativeStackNavigationProp<RootStackParamList, 'VenueList'>;
+
+function CardSeparator() {
+  return <View style={styles.separator} />;
+}
 
 export default function VenueListScreen() {
   const navigation = useNavigation<Nav>();
@@ -44,7 +51,9 @@ export default function VenueListScreen() {
       const active = prev.dealTypes.includes(dt);
       return {
         ...prev,
-        dealTypes: active ? prev.dealTypes.filter((d) => d !== dt) : [...prev.dealTypes, dt],
+        dealTypes: active
+          ? prev.dealTypes.filter((d) => d !== dt)
+          : [...prev.dealTypes, dt],
       };
     });
   }
@@ -67,45 +76,65 @@ export default function VenueListScreen() {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search happy hours..."
-          value={filters.searchQuery}
-          onChangeText={(text) => setFilters((prev) => ({ ...prev, searchQuery: text }))}
-        />
-      </View>
-      <View style={styles.filters}>
-        <View style={styles.filterHeader}>
-          <Text>{filterCount > 0 ? `Filters (${filterCount})` : 'Filters'}</Text>
+  const listHeader = (
+    <View style={styles.listHeader}>
+      <Text style={styles.heading}>Find your spot</Text>
+      <SearchBar
+        value={filters.searchQuery}
+        onChangeText={(text) => setFilters((prev) => ({ ...prev, searchQuery: text }))}
+      />
+      <View style={styles.filterRow}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterScroll}
+        >
           {filterCount > 0 && (
-            <TouchableOpacity onPress={() => setFilters(defaultFilters)}>
-              <Text>[ clear all ]</Text>
+            <TouchableOpacity onPress={() => setFilters(defaultFilters)} style={styles.clearAll}>
+              <Text style={styles.clearAllText}>Clear all</Text>
             </TouchableOpacity>
           )}
-        </View>
-        <TouchableOpacity onPress={() => toggle('openNow')}>
-          <Text>{filters.openNow ? '[x]' : '[ ]'} Open now</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => toggle('hasFoodSpecials')}>
-          <Text>{filters.hasFoodSpecials ? '[x]' : '[ ]'} Food specials</Text>
-        </TouchableOpacity>
-        <FilterButton label="Open Late" onPress={() => console.log("PRES")}/>
-        <View style={styles.dealTypes}>
+          <FilterButton
+            label="Happening now"
+            active={filters.openNow}
+            onPress={() => toggle('openNow')}
+            icon={<Ionicons name="time-outline" size={13} color={filters.openNow ? '#ffffff' : '#1e1e1e'} />}
+          />
+          <FilterButton
+            label="Food specials"
+            active={filters.hasFoodSpecials}
+            onPress={() => toggle('hasFoodSpecials')}
+            icon={(
+              <Ionicons
+                name="restaurant-outline"
+                size={13}
+                color={filters.hasFoodSpecials ? '#ffffff' : '#1e1e1e'}
+              />
+            )}
+          />
           {(Object.keys(DEAL_TYPE_LABELS) as DealType[]).map((dt) => (
-            <TouchableOpacity key={dt} onPress={() => toggleDealType(dt)}>
-              <Text>{filters.dealTypes.includes(dt) ? '[x]' : '[ ]'} {DEAL_TYPE_LABELS[dt]}</Text>
-            </TouchableOpacity>
+            <FilterButton
+              key={dt}
+              label={DEAL_TYPE_LABELS[dt]}
+              active={filters.dealTypes.includes(dt)}
+              onPress={() => toggleDealType(dt)}
+            />
           ))}
-        </View>
+        </ScrollView>
       </View>
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
       <FlatList
         data={venues}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
+        ListHeaderComponent={listHeader}
         ListEmptyComponent={<Text style={styles.empty}>No venues match your filters.</Text>}
+        contentContainerStyle={styles.listContent}
+        ItemSeparatorComponent={CardSeparator}
       />
     </View>
   );
@@ -114,33 +143,44 @@ export default function VenueListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f7f5f2',
   },
-  searchBar: {
-    backgroundColor: '#f0f0f0',
-    borderRadius: 12,
-    paddingHorizontal: 12,
+  listContent: {
+    padding: 16,
+    gap: 12,
+  },
+  listHeader: {
+    gap: 12,
+    marginBottom: 4,
+  },
+  heading: {
+    ...typography.h1,
+    color: '#1e1e1e',
+  },
+  filterRow: {
+    marginHorizontal: -16,
+  },
+  filterScroll: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    gap: 8,
+  },
+  clearAll: {
     paddingVertical: 8,
+    paddingHorizontal: 4,
   },
-  input: {
-    fontSize: 14,
-    color: '#000000',
+  clearAllText: {
+    ...typography.label,
+    color: '#fda100',
   },
-  filters: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    gap: 8,
-  },
-  filterHeader: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  dealTypes: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
+  separator: {
+    height: 12,
   },
   empty: {
+    ...typography.body,
+    color: '#9e9e9e',
     padding: 16,
+    textAlign: 'center',
   },
 });

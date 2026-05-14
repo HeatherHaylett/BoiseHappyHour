@@ -6,8 +6,8 @@ export type VenueTag = 'dog_outside' | 'dog_inside' | 'patio' | 'live_music' | '
 
 export type HappyHourWindow = {
   days: Day[];
-  start: string;  // "HH:mm" — use "00:00" for all day
-  end: string;    // "HH:mm" — use "23:59" for all day
+  start: string; // "HH:mm"
+  end: string; // "HH:mm"
 };
 
 export type Venue = {
@@ -27,7 +27,7 @@ export type Venue = {
 export type FilterState = {
   searchQuery: string;
   openNow: boolean;
-  tags: VenueTag[]; 
+  tags: VenueTag[];
   hasFoodSpecials: boolean;
   dealTypes: DealType[];
 };

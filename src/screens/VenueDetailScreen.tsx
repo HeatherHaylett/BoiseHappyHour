@@ -57,8 +57,8 @@ export default function VenueDetailScreen() {
         ) : null}
       </View>
       <View style={styles.section}>
-        {venue.schedule.map((window, i) => (
-          <Text key={i}>{window.days.join(', ')}  {formatScheduleWindow(window)}</Text>
+        {venue.schedule.map((window) => (
+          <Text key={window.days.join('-') + window.start}>{window.days.join(', ')}  {formatScheduleWindow(window)}</Text>
         ))}
         <Text>{venue.dealDescription}</Text>
         <Text>Deal types: {venue.dealTypes.join(', ')}</Text>
