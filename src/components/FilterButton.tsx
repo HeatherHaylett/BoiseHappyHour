@@ -1,27 +1,26 @@
-import { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { typography } from '@/constants/typography';
 
 type Props = {
   label: string;
-  onPress?: () => void;
+  active: boolean;
+  onPress: () => void;
+  // eslint-disable-next-line react/require-default-props
+  icon?: React.ReactNode;
 };
 
-export function FilterButton({ label, onPress }: Props) {
-  const [toggleActive, setToggleActive] = useState(false);
-
-  function handlePress() {
-    setToggleActive(!toggleActive);
-    onPress ? onPress() : null;
-  }
-
+export function FilterButton({
+  label, active, onPress, icon,
+}: Props) {
   return (
     <TouchableOpacity
-      style={[styles.container, toggleActive ? styles.containerActive : styles.containerDefault]}
-      onPress={handlePress}
+      style={[styles.container, active ? styles.containerActive : styles.containerDefault]}
+      onPress={onPress}
       activeOpacity={0.8}
     >
-      <Text style={[typography.label, toggleActive ? styles.labelActive : styles.labelDefault]}>
+      {icon}
+      <Text style={[typography.label, active ? styles.labelActive : styles.labelDefault]}>
         {label}
       </Text>
     </TouchableOpacity>
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 17,
-    gap: 10,
+    gap: 6,
   },
   containerDefault: {
     backgroundColor: '#ffffff',
@@ -49,16 +48,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fda100',
   },
-  icon: {
-    width: 13,
-    height: 13,
-  },
   labelDefault: {
-    ...typography.label,
     color: '#1e1e1e',
   },
   labelActive: {
-    ...typography.label,
     color: '#ffffff',
   },
 });
