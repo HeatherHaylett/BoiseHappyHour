@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -126,7 +127,7 @@ export default function VenueListScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={venues}
         keyExtractor={(item) => item.id}
@@ -136,14 +137,14 @@ export default function VenueListScreen() {
         contentContainerStyle={styles.listContent}
         ItemSeparatorComponent={CardSeparator}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f7f5f2',
+    backgroundColor: 'white',
   },
   listContent: {
     padding: 16,

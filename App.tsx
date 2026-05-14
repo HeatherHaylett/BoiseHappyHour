@@ -1,7 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+/* eslint-disable camelcase */
+import {
+  useFonts,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+/* eslint-enable camelcase */
 import { RootStackParamList } from '@/types';
 import VenueListScreen from '@/screens/VenueListScreen';
 import VenueDetailScreen from '@/screens/VenueDetailScreen';
@@ -9,17 +17,23 @@ import VenueDetailScreen from '@/screens/VenueDetailScreen';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  // eslint-disable-next-line camelcase
   const [fontsLoaded] = useFonts({ Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold });
 
   if (!fontsLoaded) return null;
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="VenueList">
-        <Stack.Screen name="VenueList" component={VenueListScreen} options={{ title: 'Boise Happy Hour' }} />
-        <Stack.Screen name="VenueDetail" component={VenueDetailScreen} options={{ title: 'Venue' }} />
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="VenueList"
+          screenOptions={{ headerShadowVisible: false }}
+        >
+          <Stack.Screen name="VenueList" component={VenueListScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="VenueDetail" component={VenueDetailScreen} options={{ title: 'Venue' }} />
+        </Stack.Navigator>
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
