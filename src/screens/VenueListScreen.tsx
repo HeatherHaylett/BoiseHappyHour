@@ -17,7 +17,7 @@ import {
   DealType,
 } from '@/types';
 import { useVenues } from '@/hooks/useVenues';
-import { PushButton } from '@/components/PushButton';
+import { FilterButton } from '@/components/FilterButton';
 import { VenueCard } from '@/components/VenueCard';
 
 const DEAL_TYPE_LABELS: Record<DealType, string> = {
@@ -92,7 +92,7 @@ export default function VenueListScreen() {
         <TouchableOpacity onPress={() => toggle('hasFoodSpecials')}>
           <Text>{filters.hasFoodSpecials ? '[x]' : '[ ]'} Food specials</Text>
         </TouchableOpacity>
-        <PushButton label="Open Late" onPress={() => console.log("PRES")}/>
+        <FilterButton label="Open Late" onPress={() => console.log("PRES")}/>
         <View style={styles.dealTypes}>
           {(Object.keys(DEAL_TYPE_LABELS) as DealType[]).map((dt) => (
             <TouchableOpacity key={dt} onPress={() => toggleDealType(dt)}>

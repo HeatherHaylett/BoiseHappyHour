@@ -1,23 +1,27 @@
+import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { typography } from '@/constants/typography';
 
-type State = 'default' | 'active';
-
 type Props = {
   label: string;
-  state?: State;
   onPress?: () => void;
 };
 
-export function PushButton({ label, state = 'active', onPress }: Props) {
-  const isActive = state === 'active';
+export function FilterButton({ label, onPress }: Props) {
+  const [toggleActive, setToggleActive] = useState(false);
+
+  function handlePress() {
+    setToggleActive(!toggleActive);
+    onPress ? onPress() : null;
+  }
+
   return (
     <TouchableOpacity
-      style={[styles.container, isActive ? styles.containerActive : styles.containerDefault]}
-      onPress={onPress}
+      style={[styles.container, toggleActive ? styles.containerActive : styles.containerDefault]}
+      onPress={handlePress}
       activeOpacity={0.8}
     >
-      <Text style={[typography.label, isActive ? styles.labelActive : styles.labelDefault]}>
+      <Text style={[typography.label, toggleActive ? styles.labelActive : styles.labelDefault]}>
         {label}
       </Text>
     </TouchableOpacity>
@@ -42,15 +46,19 @@ const styles = StyleSheet.create({
   },
   containerActive: {
     backgroundColor: '#fda100',
+    borderWidth: 1,
+    borderColor: '#fda100',
   },
   icon: {
     width: 13,
     height: 13,
   },
   labelDefault: {
+    ...typography.label,
     color: '#1e1e1e',
   },
   labelActive: {
+    ...typography.label,
     color: '#ffffff',
   },
 });
