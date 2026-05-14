@@ -13,6 +13,7 @@ import {
 import { RootStackParamList } from '@/types';
 import VenueListScreen from '@/screens/VenueListScreen';
 import VenueDetailScreen from '@/screens/VenueDetailScreen';
+import { NavButton } from '@/components/NavButton';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -30,7 +31,16 @@ export default function App() {
           screenOptions={{ headerShadowVisible: false }}
         >
           <Stack.Screen name="VenueList" component={VenueListScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="VenueDetail" component={VenueDetailScreen} options={{ title: 'Venue' }} />
+          <Stack.Screen
+            name="VenueDetail"
+            component={VenueDetailScreen}
+            options={({ navigation }) => ({
+              title: '',
+              headerStyle: { backgroundColor: '#C57100' },
+              // eslint-disable-next-line react/no-unstable-nested-components
+              headerLeft: () => <NavButton onPress={() => navigation.goBack()} />,
+            })}
+          />
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
