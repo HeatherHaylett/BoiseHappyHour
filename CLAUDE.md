@@ -218,6 +218,19 @@ Write unit tests for this function. Edge cases to cover: first minute of happy h
 
 ---
 
+## Styling conventions
+
+### StyleSheet ordering
+
+All `StyleSheet.create()` objects must be sorted alphabetically at two levels:
+
+1. **Style keys** — the named styles (`addressContainer`, `body`, `container`, …) in A–Z order
+2. **Properties within each key** — individual style props (`alignItems`, `backgroundColor`, `gap`, …) in A–Z order within each style block
+
+Spread expressions (e.g. `...typography.h2`) go first within a block, before alphabetized individual props.
+
+---
+
 ## Styling — placeholder mode
 
 The UX designer owns all visual design. Do not make styling decisions.
