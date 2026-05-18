@@ -36,11 +36,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fef3d0',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    gap: 4,
+    backgroundColor: '#f9f2ce',
+    borderWidth: 1,
+    borderColor: '#f3e3d2',
+    borderRadius: 24,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    gap: 8,
   },
   label: {
     ...typography.label,
