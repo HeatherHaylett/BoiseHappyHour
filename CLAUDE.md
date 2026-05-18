@@ -13,11 +13,13 @@ A React Native app (iOS + Android) that shows a curated list of happy hour venue
 ## Commands
 
 ```bash
-npx expo start           # Start dev server (scan QR with Expo Go)
-npx expo start --ios     # Open in iOS simulator
-npx expo start --android # Open in Android emulator
-npm run lint             # Run ESLint on .ts/.tsx files
-npm run typecheck        # Run TypeScript type checking (no emit)
+npx expo start              # Start dev server (open via installed dev client app)
+npx expo start --ios        # Open in iOS simulator
+npx expo start --android    # Open in Android emulator
+npm run build:dev:ios       # EAS build — development client for iOS
+npm run build:dev:android   # EAS build — development client for Android
+npm run lint                # Run ESLint on .ts/.tsx files
+npm run typecheck           # Run TypeScript type checking (no emit)
 ```
 
 ---

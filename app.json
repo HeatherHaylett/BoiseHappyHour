@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "BoiseHappyHour",
-    "slug": "BoiseHappyHour",
+    "name": "B4Five",
+    "slug": "b4five",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.doubleh.b4five",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +29,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "15b3558f-4646-42ab-8c0f-3264da12e6f4"
+      }
+    },
+    "owner": "double-h"
   }
 }

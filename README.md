@@ -69,18 +69,27 @@ Happy Hour Boise is a React Native app (iOS + Android) that consolidates happy h
 
 ## Getting started
 
-**Prerequisites:** Node 20+, Expo CLI, Expo Go app on your phone (for device testing)
+**Prerequisites:** Node 20+, Expo CLI, EAS CLI (`npm install -g eas-cli`)
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/happy-hour-boise.git
 cd happy-hour-boise
 npm install
-npx expo start
 ```
 
-Scan the QR code with Expo Go (iOS) or the Camera app (Android).
+### First time: install the development client on your device
+
+This app uses a custom development build (not Expo Go). You need to build and install it once:
 
 ```bash
+eas build --profile development --platform ios      # build dev client for iOS
+eas build --profile development --platform android  # build dev client for Android
+```
+
+Install the resulting `.ipa` / `.apk` on your device or simulator, then run:
+
+```bash
+npx expo start        # opens dev server — connect via the installed dev client app
 npx expo start --ios      # iOS simulator
 npx expo start --android  # Android emulator
 ```
