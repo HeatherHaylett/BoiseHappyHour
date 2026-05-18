@@ -75,6 +75,12 @@ npm run typecheck           # Run TypeScript type checking (no emit)
 - Error boundaries at route level minimum
 - ESLint uses the Airbnb config with `@typescript-eslint`. Key rules already disabled: `react/react-in-jsx-scope`, `import/extensions`
 
+### Testing
+
+- Test files live co-located next to the file they test: `timeHelpers.ts` → `timeHelpers.test.ts`
+- Use relative imports in test files (not `@/`) since they sit in the same directory
+- Run tests with `npm test`
+
 ---
 
 ## Data layer
