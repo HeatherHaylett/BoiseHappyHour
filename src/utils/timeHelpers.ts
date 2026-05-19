@@ -15,7 +15,7 @@ function isWindowActive(window: HappyHourWindow, day: Day, check: Dayjs): boolea
   if (!window.days.includes(day)) return false;
   const start = parseTime(window.start);
   const end = parseTime(window.end);
-  if (end.isAfter(start)) return check.isAfter(start) && check.isBefore(end);
+  if (end.isAfter(start)) return !check.isBefore(start) && check.isBefore(end);
   // midnight-spanning window: e.g. 23:00–01:00
   return check.isAfter(start) || check.isBefore(end);
 }
